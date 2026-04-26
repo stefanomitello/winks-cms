@@ -9,6 +9,7 @@ import swaggerUi from "swagger-ui-express";
 import blogRoutes from "./routes/blog.routes";
 import cmsRoutes from "./routes/cms.routes";
 import { errorHandler } from "./middleware/errorHandler";
+import { seedPosts } from "./seed/seed";
 
 dotenv.config();
 
@@ -45,8 +46,9 @@ app.use(errorHandler);
 
 mongoose
   .connect(MONGODB_URI)
-  .then(() => {
+  .then(async () => {
     console.log("✅ MongoDB connected:", MONGODB_URI);
+    await seedPosts();
     app.listen(PORT, () =>
       console.log(`🚀 API running → http://localhost:${PORT}`),
     );
