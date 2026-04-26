@@ -1,0 +1,50 @@
+/* Tailwind v4 + Kumo integration */
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles/tailwind";
+@import "tailwindcss";
+
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+@layer base {
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  h3 {
+    @apply text-xl font-semibold;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:scale-[1.015] hover:shadow-xl;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-indigo-500/15 text-indigo-300 border border-indigo-500/25
+           hover:bg-indigo-500/30 hover:text-indigo-200 transition-colors cursor-pointer;
+  }
+
+  .tag-pill-active {
+    @apply bg-indigo-500/50 text-indigo-100 border-indigo-400/60;
+  }
+
+  .status-draft {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium
+           bg-amber-500/15 text-amber-300 border border-amber-500/30;
+  }
+
+  .status-published {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium
+           bg-emerald-500/15 text-emerald-300 border border-emerald-500/30;
+  }
+}
