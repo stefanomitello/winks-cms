@@ -30,14 +30,7 @@ import {
   deletePost,
 } from "../api/client";
 import type { Post, CreatePostPayload } from "../types";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
+import { formatDate } from "../utils";
 
 export default function CmsPage() {
   const [posts, setPosts] = useState<Post[]>([]);

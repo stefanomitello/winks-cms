@@ -4,14 +4,7 @@ import { getPostById } from "../api/client";
 import { Badge, Button, Loader, LayerCard } from "@cloudflare/kumo";
 import { CaretLeftIcon } from "@phosphor-icons/react";
 import type { Post } from "../types";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+import { formatDate } from "../utils";
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();

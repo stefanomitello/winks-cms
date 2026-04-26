@@ -6,13 +6,7 @@ interface PostCardProps {
   post: Post;
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+import { formatDate } from "../utils";
 
 export default function PostCard({ post }: PostCardProps) {
   const navigate = useNavigate();

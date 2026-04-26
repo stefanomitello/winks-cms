@@ -15,6 +15,35 @@ services:
       timeout: 5s
       retries: 5
 
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: winks-api
+    restart: unless-stopped
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongo:27017/winks-cms
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: winks-web
+    restart: unless-stopped
+    ports:
+      - '5173:5173'
+    environment:
+      - VITE_API_URL=http://api:3001
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+
 volumes:
   mongo_data:
     driver: local

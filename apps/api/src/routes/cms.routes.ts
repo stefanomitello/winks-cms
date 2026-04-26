@@ -6,7 +6,7 @@ import {
   deletePost,
 } from "../controllers/post.controller";
 
-const router = Router();
+const router: Router = Router();
 
 /**
  * @openapi
